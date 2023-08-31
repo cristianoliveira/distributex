@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    ports:
+      - "4040:80"
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - ./nginx:/usr/local/nginx/conf
