@@ -3,6 +3,14 @@ services:
     build: .
     ports:
       - "4040:80"
+
     volumes:
       - ./app:/usr/share/nginx/html
-      - ./nginx:/usr/local/nginx/conf
+      - ./nginx:/etc/nginx/conf.d/
+
+  serviceone:
+    build: services/one
+    ports:
+      - "4001:4001" # Web Server
+    volumes:
+      - ./services/one:/app
