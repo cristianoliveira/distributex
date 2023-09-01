@@ -1,10 +1,11 @@
 FROM golang:latest
+# FROM alpine:3.14
 
 RUN mkdir /app
 WORKDIR /app
 ADD . /app
 
+# Install database 
+RUN apt update && apt install -y sqlite3
 
-RUN go get -u github.com/gorilla/mux
-
-CMD ["go", "run", "cmd/todo/main.go"]
+CMD ["make", "run"]

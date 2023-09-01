@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Service ONE</title>
+</head>
+
+<body>
+  <div class="h-100 w-full flex items-center justify-center font-sans">
+    <div class="rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+      <div class="mb-4">
+        <h1 class="text-grey-darkest">Todo List</h1>
+        <div class="flex mt-4">
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+            placeholder="Add Todo">
+          <button
+            class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal">Add</button>
+        </div>
+      </div>
+      <div>
+        {{range .}}
+        <div class="flex mb-4 items-center">
+          <tr>
+            <p class="w-full text-grey-darkest">{{.Description}}</p>
+
+            {{ if not .Done }}
+            <button
+              class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">Done</button>
+            {{ end }}
+            <button
+              class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+          </tr>
+        </div>
+        {{end}}
+
+        <div class="flex mb-4 items-center">
+          <p class="w-full line-through text-green">Submit Todo App Component to Tailwind Components</p>
+          <button
+            class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not
+            Done</button>
+          <button
+            class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
