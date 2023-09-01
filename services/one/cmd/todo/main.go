@@ -30,6 +30,7 @@ func RuterWithContext(repo *TodoRepository) http.Handler {
 
 	router.HandleFunc("/todos", IndexHandler(repo)).Methods("GET")
 	router.HandleFunc("/todos", PostTodo(repo)).Methods("POST")
+	router.HandleFunc("/todos/{todoId}", PutTodo(repo)).Methods("PUT")
 	router.HandleFunc("/todos/{todoId}", DeleteTodo(repo)).Methods("DELETE")
 
 	return router

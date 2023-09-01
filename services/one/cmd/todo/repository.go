@@ -44,7 +44,7 @@ func NewTodosRepository() (*TodoRepository, error) {
 	}, nil
 }
 
-func (c *TodoRepository) GetById(id string) (Todo, error) {
+func (c *TodoRepository) GetById(id string) (*Todo, error) {
 	var todo Todo
 
 	row := c.db.QueryRow("SELECT * FROM todos WHERE id = ?;", id)
@@ -52,10 +52,10 @@ func (c *TodoRepository) GetById(id string) (Todo, error) {
 
 	if err != nil {
 		println("Error inserting todo reason " + err.Error())
-		return todo, err
+		return nil, err
 	}
 
-	return todo, nil
+	return &todo, nil
 }
 
 func (c *TodoRepository) Insert(description string) (string, error) {
@@ -78,6 +78,18 @@ func (c *TodoRepository) Delete(todoId string) error {
 	_, err := c.db.Exec("DELETE FROM todos WHERE id = ?;", todoId)
 	if err != nil {
 		println("Error deleting todo reason " + err.Error())
+		return err
+	}
+
+	return nil
+}
+
+func (c *TodoRepository) Update(todoId string, todo *Todo) error {
+	log.Println("Updating todo id:" + todoId)
+
+	_, err := c.db.Exec("UPDATE todos SET description = ?, done = ? WHERE id = ?;", todo.Description, todo.Done, todoId)
+	if err != nil {
+		println("Error updating todo reason " + err.Error())
 		return err
 	}
 

@@ -1,15 +1,23 @@
 {{ define "todo-item" }}
-<div id="id-{{.ID}}" class="flex items-center">
+<div id="id-{{.ID}}" class="flex items-center space-y-4">
   <tr class="pd-4">
-    <p class="w-full text-grey-darkest">{{.Description}}</p>
 
     {{ if not .Done }}
-    <button
-      class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">Done</button>
+    <p class="w-full text-grey-darkest">{{.Description}}</p>
+
+    <button name="done" value="1"
+      class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
+      hx-put="/todos/{{.ID}}" hx-swap="outerHTML" hx-target="#id-{{.ID}}">Done</button>
+    {{ else }}
+    <p class="w-full text-grey-darkest line-through">{{.Description}}</p>
+
+    <button name="done" value="0"
+      class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green"
+      hx-put="/todos/{{.ID}}" hx-swap="outerHTML" hx-target="#id-{{.ID}}">Undo</button>
     {{ end }}
 
-    <button hx-delete="/todos/{{.ID}}" hx-trigger="click" hx-target="#id-{{.ID}}" hx-swap="outerHTML"
-      class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+    <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"
+      hx-delete="/todos/{{.ID}}" hx-trigger="click" hx-target="#id-{{.ID}}" hx-swap="outerHTML">Remove</button>
   </tr>
 </div>
 {{ end }}

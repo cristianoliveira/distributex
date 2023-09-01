@@ -79,6 +79,62 @@ func PostTodo(todosTable *TodoRepository) http.HandlerFunc {
 	}
 }
 
+func PutTodo(todosTable *TodoRepository) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println("PUT /todos/{ID} -- Request received for " + r.URL.Path)
+
+		vars := mux.Vars(r)
+		log.Println("vars " + vars["todoId"])
+		id := vars["todoId"]
+
+		r.ParseForm()
+		done := r.FormValue("done")
+		log.Println("done " + done)
+
+		if id == "" || done == "" {
+			w.WriteHeader(http.StatusBadRequest)
+			http.Error(w, "Bad Request", http.StatusBadRequest)
+			return
+		}
+
+		log.Println("Updating todo " + id + " to " + done)
+
+		todo, err := todosTable.GetById(id)
+		if err != nil {
+			log.Println("Error getting todo reason " + err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+		if todo == nil {
+			w.WriteHeader(http.StatusNotFound)
+			http.Error(w, "Not Found", http.StatusNotFound)
+			return
+		}
+
+		todo.Done = done == "1"
+		log.Println("Todo to update" + todo.ID)
+
+		err = todosTable.Update(id, todo)
+		if err != nil {
+			log.Println("Error deleting todo reason " + err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+
+		tmpl, err := template.ParseFiles("web/add.html", "web/_todo.html")
+		if err != nil {
+			log.Println("Error parsing template reason " + err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+
+		tmpl.Execute(w, todo)
+	}
+}
+
 func DeleteTodo(todosTable *TodoRepository) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		log.Println("DELETE /todos/{ID} -- Request received for " + r.URL.Path)
