@@ -19,8 +19,10 @@ This is a POC of a federated application using HTMX and NGINX
 ### Requirements
 
 Make sure you have 
- - [docker](https://docs.docker.com/engine/install/)https://docs.docker.com/engine/install/
- - [docker compose](https://docs.docker.com/compose/install/)https://docs.docker.com/compose/install/
+ - [docker](https://docs.docker.com/engine/install/)
+ - [docker compose](https://docs.docker.com/compose/install/)
+
+If you are on OSX we recommend installing [colima](https://github.com/abiosoft/colima) as a container runtime
 
 ### Running
 
