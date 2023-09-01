@@ -8,7 +8,7 @@ services:
       - ./app:/usr/share/nginx/html
       - ./nginx:/etc/nginx/conf.d/
 
-  serviceone:
+  todos-app:
     build: services/one
     ports:
       - "4001:4001" # Web Server

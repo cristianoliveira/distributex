@@ -1,64 +1,36 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	todos, err := NewTodos()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "4001"
+	}
 
+	todosRepo, err := NewTodosRepository()
 	if err != nil {
 		log.Println("Error creating todos reason " + err.Error())
 		return
 	}
 
-	todos.Insert("Initial todo")
-
-	r := mux.NewRouter()
-
-	r.HandleFunc("/", mainHandler)
-
-	http.Handle("/", r)
-
 	log.Println("Starting server on port 4001")
-	http.ListenAndServe("0.0.0.0:4001", nil)
+
+	http.ListenAndServe("0.0.0.0:"+port, RuterWithContext(todosRepo))
 }
 
-func mainHandler(w http.ResponseWriter, r *http.Request) {
-	todosTable, err := NewTodos()
-	if err != nil {
-		log.Println("Error instantiating todos table " + err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+func RuterWithContext(repo *TodoRepository) http.Handler {
+	router := mux.NewRouter().StrictSlash(true)
 
-	todosTable.Insert("Second todo")
+	router.HandleFunc("/todos", IndexHandler(repo)).Methods("GET")
+	router.HandleFunc("/todos", PostTodo(repo)).Methods("POST")
+	router.HandleFunc("/todos/{todoId}", DeleteTodo(repo)).Methods("DELETE")
 
-	log.Println("GET /todos -- Request received for " + r.URL.Path)
-
-	tmpl, err := template.ParseFiles("web/todo.html")
-	if err != nil {
-		log.Println("Error parsing template reason " + err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
-	todos, err := todosTable.GetAll()
-	if err != nil {
-		log.Println("Error getting todos reason " + err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	for _, todo := range todos {
-		log.Println("Todo " + todo.Description)
-	}
-
-	tmpl.Execute(w, todos)
+	return router
 }

@@ -11,4 +11,4 @@ build:
 .Phony: watch
 watch:
 	@echo "Running service one"
-	@find . -name "*.go" | entr go run cmd/todo/main.go
+	@npx nodemon --exec 'make run' --signal SIGTERM

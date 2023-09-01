@@ -18,7 +18,7 @@ const create string = `
 
 const file string = "todos.db"
 
-type TodosDB struct {
+type TodoRepository struct {
 	mu sync.Mutex
 	db *sql.DB
 }
@@ -29,7 +29,7 @@ type Todo struct {
 	Done        bool
 }
 
-func NewTodos() (*TodosDB, error) {
+func NewTodosRepository() (*TodoRepository, error) {
 	db, err := sql.Open("sqlite3", file)
 	if err != nil {
 		return nil, err
@@ -39,12 +39,28 @@ func NewTodos() (*TodosDB, error) {
 		return nil, err
 	}
 
-	return &TodosDB{
+	return &TodoRepository{
 		db: db,
 	}, nil
 }
 
-func (c *TodosDB) Insert(description string) (string, error) {
+func (c *TodoRepository) GetById(id string) (Todo, error) {
+	var todo Todo
+
+	row := c.db.QueryRow("SELECT * FROM todos WHERE id = ?;", id)
+	err := row.Scan(&todo.ID, &todo.Description, &todo.Done)
+
+	if err != nil {
+		println("Error inserting todo reason " + err.Error())
+		return todo, err
+	}
+
+	return todo, nil
+}
+
+func (c *TodoRepository) Insert(description string) (string, error) {
+	log.Println("Inserting todo " + description)
+
 	id := uuid.New()
 	_, err := c.db.Exec("INSERT INTO todos (id, description) VALUES(?, ?);", id.String(), description)
 
@@ -56,7 +72,19 @@ func (c *TodosDB) Insert(description string) (string, error) {
 	return id.String(), nil
 }
 
-func (c *TodosDB) GetAll() ([]Todo, error) {
+func (c *TodoRepository) Delete(todoId string) error {
+	log.Println("Deleting todo id:" + todoId)
+
+	_, err := c.db.Exec("DELETE FROM todos WHERE id = ?;", todoId)
+	if err != nil {
+		println("Error deleting todo reason " + err.Error())
+		return err
+	}
+
+	return nil
+}
+
+func (c *TodoRepository) GetAll() ([]Todo, error) {
 	todos := []Todo{}
 
 	rows, err := c.db.Query("SELECT * FROM todos;")

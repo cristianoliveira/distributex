@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style type="text/css">
+    body {
+      background-color: #000000;
+      color: #ffffff;
+    }
+  </style>
+
+  <title>Service ONE</title>
+</head>
+
+<body>
+  <div class="h-100 w-full flex items-center justify-center font-sans">
+    <div class="rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+      <div class="mb-4">
+        <h1 class="text-grey-darkest">Todo List</h1>
+        <div class="flex mt-4">
+          <form id="todo-form">
+
+            <input name="details" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-black"
+              placeholder="Add Todo">
+
+            <button class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal"
+              hx-post="/todos" hx-include="#todo-form" hx-target="#todo-list" hx-swap="beforeend">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="todo-list">
+        {{range .}}
+        {{ template "todo-item" . }}
+        {{end}}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

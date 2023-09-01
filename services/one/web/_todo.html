@@ -1,0 +1,15 @@
+{{ define "todo-item" }}
+<div id="id-{{.ID}}" class="flex items-center">
+  <tr class="pd-4">
+    <p class="w-full text-grey-darkest">{{.Description}}</p>
+
+    {{ if not .Done }}
+    <button
+      class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green hover:bg-green">Done</button>
+    {{ end }}
+
+    <button hx-delete="/todos/{{.ID}}" hx-trigger="click" hx-target="#id-{{.ID}}" hx-swap="outerHTML"
+      class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+  </tr>
+</div>
+{{ end }}

@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <script src="https://unpkg.com/htmx.org@1.9.5"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Micro frontend</title>
@@ -11,6 +13,10 @@
     body {
       background-color: #000000;
       color: #ffffff;
+    }
+
+    input {
+      color: #000000;
     }
   </style>
 </head>
@@ -25,11 +31,7 @@
 
   <div class="display-4  flex">
     <div class="m-4 p-4 border-1 al">
-      <div hx-get="/todo" hx-trigger="load" hx-target="this" hx-swap="innerHTML">
-      </div>
-    </div>
-    <div class="m-4 p-4 border-1 al">
-      <div hx-get="/todo" hx-trigger="load" hx-target="this" hx-swap="innerHTML">
+      <div hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML">
       </div>
     </div>
   </div>
