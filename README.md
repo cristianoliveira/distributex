@@ -26,7 +26,7 @@ If you are on OSX we recommend installing [colima](https://github.com/abiosoft/c
 ### Running
 
 ```bash
-docker compose up --build
+make start
 ```
 
 That's it, you should be able to access the main application at http://localhost:4040
@@ -35,3 +35,17 @@ You also should be able to access the micro services at:
   - todo list manager - http://localhost:4001
   - TBD 1 - http://localhost:4002
   - TBD 2 - http://localhost:4003
+
+### Live reload mode
+
+You need [entr](https://github.com/eradman/entr)
+
+First start the services with `make start` then in another terminal do:
+
+```bash
+make <arg>
+```
+
+Where `arg` is one of 
+
+ - watch-todos-app
