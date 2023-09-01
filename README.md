@@ -3,8 +3,7 @@ This is a POC of a federated application using HTMX and NGINX
 
 ## Architecture
 
-
-<img src="https://raw.githubusercontent.com/cristianoliveira/distributed-htmx/main/architecture.png?token=GHSAT0AAAAAACG6JEPYHSYGB6VACS3W4AC2ZHRXRRQ" align="center" />
+![Architecture](/architecture.png?raw=true "Optional Title")
 
 ## Tech stack
 
