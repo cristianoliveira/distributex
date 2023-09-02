@@ -3,6 +3,6 @@ Things to implement
     [x] Create a todo list database
     [x] Insert and retrieve todo lists
     [x] Render todo list from database
-    [ ] Add a todo list on demand
-    [ ] Mark a todo list as done
-    [ ] Remove a todo list
+    [x] Add a todo list on demand
+    [x] Mark a todo list as done
+    [x] Remove a todo list
