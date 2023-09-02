@@ -3,10 +3,16 @@
 #
 # list here all the events and the commands that it should execute
 
+- name: restart main app
+  run: 'docker compose restart web'
+  change: ['app/**/*', 'nginx/default.conf', 'docker-compose.yml']
+  ignore: ['services/**/*']
+
 - name: restart todos-app
   run: 'docker compose restart todos-app'
   change: 'services/todos/**/*'
 
-# - name: restart todos-app
-#   run: 'docker compose restart todos-app'
-#   change: 'services/two/**/*'
+- name: restart chat-app
+  run: 'docker-compose up --detach --build'
+  change: 'services/chat/**/*'
+  ignore: [ 'services/chat/target/**/*' ]

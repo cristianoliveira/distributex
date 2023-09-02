@@ -1,3 +1,3 @@
 FROM nginx
 
-# COPY app /usr/share/nginx/html
+COPY ./nginx /etc/nginx/conf.d/
