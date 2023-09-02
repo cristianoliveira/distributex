@@ -8,7 +8,7 @@ build:
 	@echo "Starting the services..."
 	@docker compose build
 
-.PHONY: watch-todos-app
-watch-todos-app:
+.PHONY: watch
+watch:
 	@echo "Watching the application..."
-	@find services/one | entr -s "docker compose restart todos-app"
+	@funzzy

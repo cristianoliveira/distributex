@@ -38,14 +38,10 @@ You also should be able to access the micro services at:
 
 ### Live reload mode
 
-You need [entr](https://github.com/eradman/entr)
+You need [funzzy](https://github.com/cristianoliveira/funzzy)
 
 First start the services with `make start` then in another terminal do:
 
 ```bash
-make <arg>
+make watch
 ```
-
-Where `arg` is one of 
-
- - watch-todos-app
