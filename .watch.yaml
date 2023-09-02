@@ -5,7 +5,7 @@
 
 - name: restart todos-app
   run: 'docker compose restart todos-app'
-  change: 'services/one/**/*'
+  change: 'services/todos/**/*'
 
 # - name: restart todos-app
 #   run: 'docker compose restart todos-app'

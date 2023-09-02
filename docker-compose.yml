@@ -9,8 +9,8 @@ services:
       - ./nginx:/etc/nginx/conf.d/
 
   todos-app:
-    build: services/one
+    build: services/todos
     ports:
       - "4001:4001" # Web Server
     volumes:
-      - ./services/one:/app
+      - ./services/todos:/app
