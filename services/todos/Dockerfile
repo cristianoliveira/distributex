@@ -1,7 +1,7 @@
 FROM golang:latest
 # FROM alpine:3.14
 
-RUN mkdir /app
+RUN mkdir -p /app
 WORKDIR /app
 ADD . /app
 

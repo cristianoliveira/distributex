@@ -8,7 +8,6 @@
 
   <script src="https://unpkg.com/htmx.org@1.9.5"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Micro frontend</title>
   <style type="text/css">
     body {
       background-color: #000000;
@@ -19,10 +18,12 @@
       color: #000000;
     }
   </style>
+
+  <title>Micro frontend</title>
 </head>
 
 <body>
-  <div class="h-100 w-full items-center justify-center font-sans">
+  <div class="w-full p-4">
     <h1 class="uppercase text-blue-400 font-bold" hx-target="find">HTMX rox</h1>
     <p>
       This is a POC of micro frontend architecture using HTMX and TailwindCSS and multiple backends.
@@ -31,8 +32,10 @@
 
   <div class="display-4  flex">
     <div class="m-4 p-4 border-1 al">
-      <div hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML">
-      </div>
+      <div hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
+    </div>
+    <div class="m-4 p-4 border-1 al">
+      <div hx-get="/chat" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
     </div>
   </div>
 </body>
