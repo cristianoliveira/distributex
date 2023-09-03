@@ -1,0 +1,12 @@
+<div id="chat" hx-ext="ws" ws-connect="/ws?username={{ username }}">
+  <span>Username: {{ username }} </span>
+
+  <div id="chat_room" class="flex flex-col overflow-y-scroll h-64 bg-slate-900">
+  </div>
+
+  <form id="form" class="flex flex-row space-x-4 space-y-4" ws-send>
+    <input class="w-full p-4 text-black" name="message" value="" placeholder="Message" />
+    <input hidden name="username" value="{{ username }}" hx-trigger="load" ws-send>
+    <button class="p-2" type="submit">Send</button>
+  </form>
+</div>

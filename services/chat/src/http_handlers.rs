@@ -1,34 +1,21 @@
 use axum::{
-    extract::{Query, State},
+    extract::Form,
     response::{Html, IntoResponse},
 };
-use serde::Deserialize;
-use std::{sync::Arc, time::SystemTime};
+use serde::{Deserialize, Serialize};
 
-use crate::{templates, AppState};
+use crate::templates;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct ChatUser {
-    username: Option<String>,
+    username: String,
 }
 
-pub async fn index_page(
-    Query(query): Query<ChatUser>,
-    State(state): State<Arc<AppState>>,
-) -> impl IntoResponse {
-    let user_set = state.user_set.lock().unwrap();
-    let now = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH);
-    let username = if let Some(value) = query.username {
-        if !user_set.contains(&value) {
-            // user_set.insert(value.to_owned());
-            value
-        } else {
-            format!("-{}", now.unwrap().as_millis())
-        }
-    } else {
-        format!("-{}", now.unwrap().as_millis())
-    };
+pub async fn join(Form(params): Form<ChatUser>) -> impl IntoResponse {
+    println!("Joining chat: {:?}", params);
+    Html(templates::chat(params))
+}
 
-    println!("User set: {:?}", username);
-    Html(templates::index_page(username))
+pub async fn index_page() -> impl IntoResponse {
+    Html(templates::index_page())
 }

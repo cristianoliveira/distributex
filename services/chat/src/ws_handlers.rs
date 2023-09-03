@@ -2,7 +2,7 @@ use crate::templates;
 use axum::{
     extract::{
         ws::{Message, WebSocket, WebSocketUpgrade},
-        State,
+        Query, State,
     },
     response::IntoResponse,
 };
@@ -18,17 +18,30 @@ pub struct Event {
     message: String,
 }
 
-pub async fn chat(ws: WebSocketUpgrade, State(state): State<Arc<AppState>>) -> impl IntoResponse {
-    ws.on_upgrade(|socket| websocket(socket, state))
+#[derive(Deserialize, Debug)]
+pub struct ChatUser {
+    username: Option<String>,
 }
 
-async fn websocket(stream: WebSocket, state: Arc<AppState>) {
+pub async fn chat(
+    ws: WebSocketUpgrade,
+    Query(user): Query<ChatUser>,
+    State(state): State<Arc<AppState>>,
+) -> impl IntoResponse {
+    ws.on_upgrade(|socket| websocket(socket, user, state))
+}
+
+async fn websocket(stream: WebSocket, user: ChatUser, state: Arc<AppState>) {
     let (mut sender, mut receiver) = stream.split();
 
+    println!("ChatUser: {:?}", user);
+
+    // First message waiting for the user to join
     let mut username = String::new();
     while let Some(Ok(message)) = receiver.next().await {
         if let Message::Text(raw_text) = message {
             println!("Received message: {:?}", raw_text);
+
             let data = match serde_json::from_str::<Event>(&raw_text) {
                 Ok(event) => event,
                 Err(err) => {
@@ -59,8 +72,7 @@ async fn websocket(stream: WebSocket, state: Arc<AppState>) {
     }
 
     let mut rx = state.tx.subscribe();
-    let msg = format!("{} joined.", username);
-    let _ = state.tx.send(msg);
+    let _ = state.tx.send(templates::chat_join(&username));
 
     let mut send_task = tokio::spawn(async move {
         while let Ok(msg) = rx.recv().await {

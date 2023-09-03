@@ -2,7 +2,10 @@ mod http_handlers;
 mod templates;
 mod ws_handlers;
 
-use axum::{routing::get, Router};
+use axum::{
+    routing::{get, post},
+    Router,
+};
 use std::{
     collections::HashSet,
     net::SocketAddr,
@@ -27,7 +30,8 @@ async fn main() {
     let app_state = Arc::new(AppState { user_set, tx });
 
     let app = Router::new()
-        .route("/chat", get(crate::http_handlers::index_page))
+        .route("/", get(crate::http_handlers::index_page))
+        .route("/chat", get(crate::http_handlers::join))
         .route("/ws", get(crate::ws_handlers::chat))
         .with_state(app_state);
 
