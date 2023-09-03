@@ -5,26 +5,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <style type="text/css">
-    body {
-      background-color: #000000;
-      color: #ffffff;
-    }
-  </style>
-
   <title>Chat Service</title>
 </head>
 
-<body>
+<body class="bg-black text-white">
   <div class="h-100 w-full flex items-center justify-center font-sans">
     <div class="rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
       <h2>
-        Chat box :D
+        Room: {{ my_var }}
       </h2>
 
-      {{ my_var }}
+      <div hx-ext="ws" ws-connect="/ws">
+        <div id="chat_room" hx-swap-oob="beforeend" class="flex flex-col-reverse overflow-y-scroll h-64 bg-slate-900">
+        </div>
+
+        <form id="form" class="flex flex-row" ws-send>
+          <span>Username: {{ username }} </span>
+
+          <fieldset class="flex flex-row text-black">
+            <legend class="text-white">Message</legend>
+            <input name="message" value="" />
+          </fieldset>
+          <input hidden name="username" value="{{ username }}">
+
+          <button class="p-2" type="submit">Send</button>
+        </form>
+      </div>
     </div>
   </div>
 </body>

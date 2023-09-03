@@ -18,5 +18,5 @@ services:
     build: services/chat
     ports:
       - "4002:4002" # Web Server
-    # volumes:
-    #   - ./services/chat:/app
+    volumes:
+      - ./services/chat/src:/app/src

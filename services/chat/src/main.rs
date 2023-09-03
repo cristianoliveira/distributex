@@ -1,38 +1,40 @@
-use std::collections::BTreeMap;
-
-use std::{env, println as info};
+mod http_handlers;
+mod templates;
+mod ws_handlers;
 
 use axum::{routing::get, Router};
-use handlebars::Handlebars;
+use std::{
+    collections::HashSet,
+    net::SocketAddr,
+    sync::{Arc, Mutex},
+};
+use tokio::sync::broadcast;
+
+pub struct AppState {
+    // Set of connected usernames.
+    user_set: Mutex<HashSet<String>>,
+    // Channel used to broadcast messages to the websocket clients.
+    tx: broadcast::Sender<String>,
+}
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route(
-        "/chat",
-        get(|| async {
-            info!("GET /");
-            let mut handlebars = Handlebars::new();
-            let source = include_str!("templates/index.html");
+    println!("Starting chat server...");
+    let port = std::env::var("PORT").unwrap_or_else(|_| "4002".to_string());
+    let user_set = Mutex::new(HashSet::new());
+    let (tx, _rx) = broadcast::channel(100);
 
-            if handlebars.register_template_string("t1", source).is_ok() {
-                let mut data = BTreeMap::new();
-                data.insert("my_var".to_string(), "BBBBBBBBBBBBB".to_string());
+    let app_state = Arc::new(AppState { user_set, tx });
 
-                handlebars.render("t1", &data).unwrap()
-            } else {
-                "Failed to register template".to_string()
-            }
-        }),
-    );
+    let app = Router::new()
+        .route("/chat", get(crate::http_handlers::index_page))
+        .route("/ws", get(crate::ws_handlers::chat))
+        .with_state(app_state);
 
-    let port = env::var("PORT").unwrap_or_else(|_| "4002".to_string());
-    info!("Chat service starging");
-    info!("Server at http://localhost:{port}");
-
-    axum::Server::bind(&format!("0.0.0.0:{port}").parse().unwrap())
+    let addr = SocketAddr::from(([127, 0, 0, 1], port.parse::<u16>().unwrap()));
+    println!("Listening {}.", addr);
+    axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
-
-    info!("Chat service stopped");
 }
