@@ -1,8 +1,8 @@
 # distributed-x
 
-## 🚧 WIP 🚧 - This is very much a work-in-progress project but feel free to look around
+## 🚧 WIP 🚧 - This is very much a work-in-progress project
 
-This is a POC of a federated application combining the power of 2 Xs - NGINX + HTMX
+This is a POC of a federated application combining the Xs of NGINX and HTMX
 
 ## Architecture
 
@@ -10,13 +10,19 @@ This is a POC of a federated application combining the power of 2 Xs - NGINX + H
 
 ## Tech stack
 
- - HTMX
- - Tailwind
- - NGINX
+ - Main app: HTMX, NGINX, and Tailwind
  - Docker 
  - Service 1 (Todo list) - Golang & Sqlite
  - Service 2 (Chat) - Rust & Websockets
  - Service 3 (??) - Nextjs??
+
+## Main goal
+
+As a dev, you should be able to:
+
+ - DX & UX isolation, which means accessing the service URL gives you the same UX as in the main APP.
+ - Freedom of choice, it shouldn't matter the stack you pick for the services as long you respect the protocol
+ - Anything else??
 
 ## Current state
 
