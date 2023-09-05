@@ -17,11 +17,21 @@ This is a POC of a federated application using HTMX and NGINX
 
 ## Current state
 
- - [x] Main app working and proxying requests to services
- - [x] Todo service - allow Add, Mark done, and delete items
- - [x] Chat service - allow pick nickname, join a room, and chat
- - [x] The integration of the services in the main app
- - [ ] Make Todo service more reactive using htmx-events
+ - [x] Main app rendering index.html 
+ - [x] Main app proxying requests to services
+ - [x] Todo service
+   - [x] Add item
+   - [x] Remove item
+   - [x] Mark as done
+   - [ ] Make it reactive to changes from other sessions (websocket?)
+ - [x] Chat service 
+   - [x] Allow pick nickname
+   - [x] Join a room
+   - [x] Send and receive messages
+ - [x] Main app renders widgets
+   - [x] Todo service
+   - [x] Chat service
+   - [ ] 3rd service
  - [ ] Implement the 3rd service 
 
 ## Getting started
