@@ -17,7 +17,7 @@ This is a POC of a federated application using HTMX and NGINX
 
 ## Current state
 
- - [x] Main app rendering index.html 
+ - [x] Main app serving index.html 
  - [x] Main app proxying requests to services
  - [x] Todo service
    - [x] Add item
@@ -28,7 +28,7 @@ This is a POC of a federated application using HTMX and NGINX
    - [x] Allow pick nickname
    - [x] Join a room
    - [x] Send and receive messages
- - [x] Main app renders widgets
+ - [x] Main app serving widgets
    - [x] Todo service
    - [x] Chat service
    - [ ] 3rd service
@@ -59,7 +59,7 @@ You also should be able to access the micro services at:
 
 ### Live reload mode
 
-You need [funzzy](https://github.com/cristianoliveira/funzzy)
+You need [funzzy](https://github.com/cristianoliveira/funzzy) (sorry?)
 
 First start the services with `make start` then in another terminal do:
 
