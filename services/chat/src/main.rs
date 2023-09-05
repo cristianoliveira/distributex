@@ -30,12 +30,12 @@ async fn main() {
     let app_state = Arc::new(AppState { user_set, tx });
 
     let app = Router::new()
-        .route("/", get(crate::http_handlers::index_page))
-        .route("/chat", get(crate::http_handlers::join))
-        .route("/ws", get(crate::ws_handlers::chat))
+        .route("/chat", get(crate::http_handlers::index_page))
+        .route("/chat/join", get(crate::http_handlers::join))
+        .route("/chat/ws", get(crate::ws_handlers::chat))
         .with_state(app_state);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], port.parse::<u16>().unwrap()));
+    let addr = SocketAddr::from(([0, 0, 0, 0], port.parse::<u16>().unwrap()));
     println!("Listening {}.", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
