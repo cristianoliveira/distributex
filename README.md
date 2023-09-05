@@ -1,5 +1,8 @@
-# distributed-htmx
-This is a POC of a federated application using HTMX and NGINX
+# distributed-x
+
+## 🚧 WIP 🚧 - This is very much a work-in-progress project but feel free to look around
+
+This is a POC of a federated application combining the power of 2 Xs - NGINX + HTMX
 
 ## Architecture
 
