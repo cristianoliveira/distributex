@@ -10,8 +10,19 @@ This is a POC of a federated application using HTMX and NGINX
  - HTMX
  - Tailwind
  - NGINX
- - Golang
- - Sqlite
+ - Docker 
+ - Service 1 (Todo list) - Golang & Sqlite
+ - Service 2 (Chat) - Rust & Websockets
+ - Service 3 (??) - Nextjs??
+
+## Current state
+
+ - [x] Main app working and proxying requests to services
+ - [x] Todo service - allow Add, Mark done, and delete items
+ - [x] Chat service - allow pick nickname, join a room, and chat
+ - [x] The integration of the services in the main app
+ - [ ] Make Todo service more reactive using htmx-events
+ - [ ] Implement the 3rd service 
 
 ## Getting started
 
@@ -32,9 +43,9 @@ make start
 That's it, you should be able to access the main application at http://localhost:4040
 
 You also should be able to access the micro services at:
-  - todo list manager - http://localhost:4001
-  - TBD 1 - http://localhost:4002
-  - TBD 2 - http://localhost:4003
+  - Todo list manager - http://localhost:4001/todo
+  - Chat service - http://localhost:4002/chat
+  - Service 3 TBD - http://localhost:4003
 
 ### Live reload mode
 
