@@ -17,8 +17,9 @@ This is a POC of a federated application using HTMX and NGINX
 
 ## Current state
 
- - [x] Main app serving index.html 
- - [x] Main app proxying requests to services
+ - [x] Main app
+   - [x] Serve index.html 
+   - [x] Proxy requests to services
  - [x] Todo service
    - [x] Add item
    - [x] Remove item
@@ -32,6 +33,7 @@ This is a POC of a federated application using HTMX and NGINX
    - [x] Todo service
    - [x] Chat service
    - [ ] 3rd service
+   - [ ] Fallback for service loading
  - [ ] Implement the 3rd service 
 
 ## Getting started
