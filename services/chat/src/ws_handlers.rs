@@ -1,4 +1,4 @@
-use crate::templates;
+use crate::{http_handlers::ChatUser, templates};
 use axum::{
     extract::{
         ws::{Message, WebSocket, WebSocketUpgrade},
@@ -16,11 +16,6 @@ use crate::AppState;
 pub struct Event {
     username: Option<String>,
     message: String,
-}
-
-#[derive(Deserialize, Debug)]
-pub struct ChatUser {
-    username: Option<String>,
 }
 
 pub async fn chat(
@@ -72,6 +67,10 @@ async fn websocket(stream: WebSocket, user: ChatUser, state: Arc<AppState>) {
     }
 
     let mut rx = state.tx.subscribe();
+    let _ = state.tx.send(templates::chat_message(Event {
+        username: Some(username.clone()),
+        message: "-- joined the chat --".to_string(),
+    }));
     let _ = state.tx.send(templates::chat_join(&username));
 
     let mut send_task = tokio::spawn(async move {

@@ -18,9 +18,9 @@ This is a POC of a federated application combining the Xs of NGINX and HTMX
 
 ## Main goal
 
-As a dev, you should be able to:
+As a dev, you should be able to do/have:
 
- - DX & UX isolation, which means accessing the service URL gives you the same UX as in the main APP.
+ - A DX & UX isolation, which means accessing the service URL gives you the same UX as in the main APP.
  - Freedom of choice, it shouldn't matter the stack you pick for the services as long you respect the protocol
  - Anything else??
 
@@ -44,6 +44,7 @@ As a dev, you should be able to:
    - [ ] 3rd service
    - [ ] Fallback for service loading
  - [ ] Implement the 3rd service 
+ - [ ] Communication between widgets?
 
 ## Getting started
 
