@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style type="text/css">
+    .htmx-indicator {
+      opacity: 0;
+      transition: opacity 500ms ease-in;
+    }
+
+    .htmx-request .htmx-indicator {
+      opacity: 1
+    }
+  </style>
+
+  <title>Latest Tech News</title>
+</head>
+
+<body>
+  <div class="w-2/3 mx-auto p-4">
+    <h1 class="uppercase text-blue-400 font-bold">
+      Latest Stories
+    </h1>
+
+    <ul>
+      {% for post in posts %}
+      <li hx-get="/story/{{ post }}/link" hx-target="this" hx-swap="outerHTML" hx-trigger="load">loading...</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <section class="w-1/2 mx-auto p-4">
+    <div id="story-details"></div>
+    <span id="loading" class="htmx-indicator">Loading details...</span>
+  </section>
+</body>
+
+</html>

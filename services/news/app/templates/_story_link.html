@@ -1,0 +1,8 @@
+<li class="p-2">
+  <a href="{{ details.url }}">{{ details.title }}</a>
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+    hx-get="/story/{{ details.id }}/details" hx-target="#story-details" hx-swap="innerHTML" hx-trigger="click"
+    hx-indicator="#loading">
+    Show preview
+  </button>
+</li>
