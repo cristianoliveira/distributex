@@ -1,4 +1,12 @@
-<div class="w-1/2 mx-auto">
+<div>
+  {% if details.text %}
   <div>{{details.text}}</div>
-  <a href="{{details.url}}">Read more...</a>
+  {% else %}
+  <div>No preview</div>
+  {% endif %}
+
+  <div>
+    {{details.score}} points by {{details.by}} | {{details.descendants}} comments
+  </div>
+  <a class="text-blue-200" href="{{details.url}}">Check original</a>
 </div>

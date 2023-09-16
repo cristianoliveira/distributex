@@ -16,5 +16,4 @@ def story_link(item_id):
 @server.route("/news/story/<item_id>/details")
 def story_details(item_id):
     details = fetch_details_for_story(item_id)
-
     return render_template("_story_details.html", details=details)

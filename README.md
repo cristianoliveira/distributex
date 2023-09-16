@@ -1,4 +1,4 @@
-# distributed-x
+# distributex
 
 ## 🚧 WIP 🚧 - This is very much a work-in-progress project
 
@@ -14,9 +14,9 @@ This is a POC of a federated application combining the Xs of NGINX and HTMX
  - Docker 
  - Service 1 (Todo list) - Golang & Sqlite
  - Service 2 (Chat) - Rust & Websockets
- - Service 3 (??) - Nextjs??
+ - Service 3 (Tech News) - Python & Hackernews API
 
-## Main goal
+## Main goals
 
 As a dev, you should be able to do/have:
 
@@ -41,9 +41,9 @@ As a dev, you should be able to do/have:
  - [x] Main app serving widgets
    - [x] Todo service
    - [x] Chat service
-   - [ ] 3rd service
+   - [x] 3rd service
    - [ ] Fallback for service loading
- - [ ] Implement the 3rd service 
+ - [x] Implement the 3rd service 
  - [ ] Communication between widgets?
 
 ## Getting started
