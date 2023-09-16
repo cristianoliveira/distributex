@@ -10,13 +10,20 @@ services:
   todos-app:
     build: services/todos
     ports:
-      - "4001:4001" # Web Server
+      - "4001:4001"
     volumes:
       - ./services/todos:/app
 
   chat-app:
     build: services/chat
     ports:
-      - "4002:4002" # Web Server
+      - "4002:4002"
     volumes:
       - ./services/chat/src:/app/src
+
+  news-app:
+    build: services/news
+    ports:
+      - "4003:4003" 
+    volumes:
+      - ./services/news:/app 

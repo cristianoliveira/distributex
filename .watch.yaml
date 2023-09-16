@@ -20,3 +20,7 @@
   run: 'docker-compose restart chat-app'
   change: 'services/chat/**/*'
   ignore: [ 'services/chat/target/**/*' ]
+
+- name: restart news-app
+  run: 'docker-compose up news-app --build'
+  change: 'services/news/**/*'
