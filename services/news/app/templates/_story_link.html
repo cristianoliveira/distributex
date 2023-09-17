@@ -12,7 +12,11 @@
 
     <button class="bg-blue-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded"
       hx-get="/news/story/{{ details.id }}/favorite" hx-target="this" hx-swap="innerHTML">
+      {% if favorited %}
+      ✅
+      {% else %}
       ⭐️
+      {% endif %}
     </button>
   </div>
 
