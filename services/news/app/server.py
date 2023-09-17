@@ -18,7 +18,11 @@ def root():
 @server.route("/news/story/<item_id>/link")
 def story_link(item_id):
     details = fetch_details_for_story(item_id)
-    favorited = repo.get_item(item_id) or False
+
+    favorited = repo.get_item(item_id)
+    if favorited is None:
+        favorited = False
+
     return render_template("_story_link.html", details=details, favorited=favorited)
 
 @server.route("/news/story/<item_id>/details")

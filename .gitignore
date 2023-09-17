@@ -21,4 +21,5 @@
 go.work
 
 *.db
+*.db-journal
 *.log
