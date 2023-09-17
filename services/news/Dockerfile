@@ -6,6 +6,8 @@ WORKDIR /app
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
 
+RUN apk add sqlite
+
 ADD . /app
 
 EXPOSE 4003
