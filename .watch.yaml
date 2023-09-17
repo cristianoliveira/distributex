@@ -15,6 +15,7 @@
 - name: restart todos-app
   run: 'docker compose restart todos-app'
   change: 'services/todos/**/*'
+  ignore: ['**/*.db', '**/*.db-journal']
 
 - name: restart chat-app
   run: 'docker-compose restart chat-app'
@@ -24,3 +25,4 @@
 - name: restart news-app
   run: 'docker-compose restart news-app'
   change: 'services/news/**/*'
+  ignore: ['**/*.db', '**/*.db-journal']
