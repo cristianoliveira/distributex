@@ -16,6 +16,10 @@ This is a POC of a federated application combining the Xs of NGINX and HTMX
  - Service 2 (Chat) - Rust & Websockets
  - Service 3 (Tech News) - Python & Hackernews API
 
+## Why?
+
+Why not? Plus I wanted to understand how much I can stretch the idea.
+
 ## Main goals
 
 As a dev, you should be able to do/have:
