@@ -10,16 +10,17 @@ logger = logging.getLogger(__name__)
 
 repo = ArticleRepo()
 
+PAGINATION_LIMIT = 3
+
 @server.route("/news")
 def root():
-    news = fetch_top_news()
-    return render_template("index.html", posts=news[:10])
+    return render_template("index.html")
 
 @server.route("/news/more")
 def load_more_news():
     offset = int(request.args.get('offset', default=0))
-    limit = int(request.args.get('limit', default=10))
-    print("@@@@@@ offset, limit: ", offset, limit)
+    limit = int(request.args.get('limit', default=PAGINATION_LIMIT))
+
     news = fetch_top_news()
 
     if offset > len(news):
