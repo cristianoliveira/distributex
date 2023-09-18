@@ -19,8 +19,6 @@
       opacity: 1
     }
   </style>
-
-  <title>Latest Tech News</title>
 </head>
 
 <body>
@@ -29,11 +27,7 @@
       Latest Stories
     </h1>
 
-    <ul>
-      {% for post in posts %}
-      <li hx-get="/news/story/{{ post }}/link" hx-target="this" hx-swap="outerHTML" hx-trigger="load">loading...</li>
-      {% endfor %}
-    </ul>
+    <ul hx-get="/news/more" hx-target="this" hx-swap="innerHTML" hx-trigger="load"></ul>
   </div>
 
   <section class="w-1/2 mx-auto p-4">

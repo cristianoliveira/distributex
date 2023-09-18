@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, request
 import logging
 
 from app.api import fetch_top_news, fetch_details_for_story
@@ -14,6 +14,27 @@ repo = ArticleRepo()
 def root():
     news = fetch_top_news()
     return render_template("index.html", posts=news[:10])
+
+@server.route("/news/more")
+def load_more_news():
+    offset = int(request.args.get('offset', default=0))
+    limit = int(request.args.get('limit', default=10))
+    print("@@@@@@ offset, limit: ", offset, limit)
+    news = fetch_top_news()
+
+    if offset > len(news):
+        offset = 0
+        limit = 0
+
+    if limit > len(news):
+        limit = len(news)
+
+    return render_template(
+        "_load_more.html",
+        posts=news[offset:limit],
+        offset=offset+limit,
+        limit=limit+limit
+    )
 
 @server.route("/news/story/<item_id>/link")
 def story_link(item_id):

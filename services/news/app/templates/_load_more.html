@@ -1,0 +1,13 @@
+{% for post in posts %}
+<li hx-get="/news/story/{{ post }}/link" hx-target="this" hx-swap="outerHTML" hx-trigger="load">loading...</li>
+{% endfor %}
+
+<div id="more">
+  <input data-pagination type="hidden" name="offset" value="{{ offset }}" />
+  <input data-pagination type="hidden" name="limit" value="{{ limit }}" />
+
+  <button hx-get="/news/more" hx-target="#more" hx-swap="outerHTML" hx-trigger="click"
+    hx-include="input[data-pagination]">
+    Load More
+  </button>
+</div>
