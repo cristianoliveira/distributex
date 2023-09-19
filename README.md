@@ -6,7 +6,7 @@ This is a POC of a federated application combining the Xs of NGINX and HTMX
 
 ## Architecture
 
-![Architecture](/architecture.png?raw=true "Optional Title")
+![Architecture](/architecture.png?raw=true "architecture diagram")
 
 ## Tech stack
 
@@ -26,7 +26,7 @@ As a dev, you should be able to do/have:
 
  - A DX & UX isolation, which means accessing the service URL gives you the same UX as in the main APP.
  - Freedom of choice, it shouldn't matter the stack you pick for the services as long you respect the protocol
- - Anything else??
+ - Communication via events
 
 ## Current state
 
@@ -42,10 +42,13 @@ As a dev, you should be able to do/have:
    - [x] Allow pick nickname
    - [x] Join a room
    - [x] Send and receive messages
+ - [x] News service
+   - [x] Allow fetch latest news
+   - [x] Allow managing favorite news
  - [x] Main app serving widgets
    - [x] Todo service
    - [x] Chat service
-   - [x] 3rd service
+   - [x] News service
    - [ ] Fallback for service loading
  - [x] Implement the 3rd service 
  - [ ] Communication between widgets?
