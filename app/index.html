@@ -32,13 +32,13 @@
     </p>
   </div>
 
-  <div class="h-1/2 m-4 display-4 flex justify-center border-gray-400 border-2">
-    <div class="m-4 overflow-y-scroll">
+  <div class="w-full h-1/2 m-4 flex justify-center border-gray-400 border-2">
+    <div class="w-1/2 m-4 overflow-y-scroll">
       <h1 class="text-grey-400 text-center font-bold">Todo List</h1>
       <div hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
     </div>
 
-    <div class="m-4 border-1 overflow-y-scroll">
+    <div class="w-1/2 m-4 overflow-y-scroll">
       <h1 class="text-grey-400 text-cented font-bold">Chat</h1>
       <div hx-get="/chat" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
     </div>
