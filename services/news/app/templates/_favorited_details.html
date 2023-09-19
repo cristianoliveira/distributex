@@ -1,4 +1,4 @@
-<li class="flex flex-row p-2" hx-get="/news/story/{{ details.id }}/link" hx-target="this" hx-swap="outerHTML"
+<li class="flex flex-row p-2" hx-get="/news/favorites/{{ details.id }}" hx-target="this" hx-swap="outerHTML"
   hx-trigger="unfavorited-event-{{ details.id }} from:body">
   <div class="w-4/6">
     <a href="{{ details.url }}">{{ details.title }} by {{details.by}}</a>

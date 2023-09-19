@@ -12,9 +12,37 @@ repo = ArticleRepo()
 
 PAGINATION_LIMIT = 3
 
-@server.route("/news")
+@server.route("/")
 def root():
     return render_template("index.html")
+
+@server.route("/news")
+def stories_list():
+    return render_template("_stories_list.html")
+
+@server.route("/news/favorites")
+def favorited_list():
+    favorites = repo.get_favorites()
+
+    return render_template(
+        "_favorired_list.html",
+        stories_ids=favorites,
+        offset=0,
+        limit=0,
+    )
+
+@server.route("/news/favorites/<item_id>")
+def favorited_details(item_id):
+    details = fetch_details_for_story(item_id)
+
+    favorited = repo.get_item(item_id)
+    if favorited is None:
+        favorited = False
+
+    if not favorited:
+        return ""
+
+    return render_template("_favorited_details.html", details=details, favorited=favorited)
 
 @server.route("/news/more")
 def load_more_news():
@@ -66,6 +94,6 @@ def story_favorite(item_id):
 
     resp = make_response(render_template("_story_favorite.html", favorited=favorited))
 
-    resp.headers['HX-Trigger'] = 'news-favorited' if favorited else 'news-unfavorited'
+    resp.headers['HX-Trigger'] = 'unfavorited-event-{}'.format(item_id) if not favorited else 'favorited-event'
 
     return resp

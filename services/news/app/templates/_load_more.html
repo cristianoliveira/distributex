@@ -1,5 +1,6 @@
 {% for post in posts %}
-<li hx-get="/news/story/{{ post }}/link" hx-target="this" hx-swap="outerHTML" hx-trigger="load">loading...</li>
+<li hx-get="/news/story/{{ post }}/link" hx-target="this" hx-swap="outerHTML" hx-trigger="load">
+  loading...</li>
 {% endfor %}
 
 <div id="more">

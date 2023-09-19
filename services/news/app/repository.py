@@ -30,3 +30,9 @@ class ArticleRepo:
         self.db.commit()
 
         return favorited
+
+    def get_favorites(self) -> list[int]:
+        curs = self.db.cursor()
+        transaction = curs.execute("SELECT item_id FROM favorites WHERE favorited = TRUE")
+
+        return [item_id for item_id, in transaction.fetchall()]
