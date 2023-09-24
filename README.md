@@ -71,16 +71,16 @@ make start
 
 That's it, you should be able to access the main application at http://localhost:4040
 
-You also should be able to access the micro services at:
+You also should be able to access the microservices at:
   - Todo list manager - http://localhost:4001/todo
   - Chat service - http://localhost:4002/chat
-  - Service 3 TBD - http://localhost:4003
+  - Tech News reader - http://localhost:4003/news
 
 ### Live reload mode
 
 You need [funzzy](https://github.com/cristianoliveira/funzzy) (sorry?)
 
-First start the services with `make start` then in another terminal do:
+First, start the services with `make start` then in another terminal do:
 
 ```bash
 make watch
