@@ -1,6 +1,6 @@
 # distributex
 
-## 🚧 WIP 🚧 - This is very much a work-in-progress project (80% done)
+## 🚧 WIP 🚧 - This is very much a work-in-progress project (70% done)
 
 This is a POC of a federated architecture combining the Xs of NGINX and HTMX
 
@@ -19,7 +19,7 @@ This is a POC of a federated architecture combining the Xs of NGINX and HTMX
 ## Why?
 
 I wanted to understand how much I could stretch the idea and how hard would be to have micro frontends and services using 
-HTMX. Spoiler alert, it's surprisingly easy, and almost no js involved.
+HTMX. Spoiler alert, it's surprisingly easy due to [HATEOAS](https://htmx.org/essays/hateoas/).
 
 ## Main goals
 
@@ -27,7 +27,7 @@ As a dev, you should be able to do/have:
 
  - A DX & UX isolation, which means accessing the service URL gives you the same UX as in the main APP.
  - Freedom of choice, it shouldn't matter the stack you pick for the services as long you respect the protocol
- - Communication via events not only on the backend but also on the frontend side, thanks to a HTTP header convention ([HX-trigger](https://htmx.org/headers/hx-trigger/))
+ - Communication via events not only on the backend but also on the frontend side, thanks to an HTTP header convention ([HX-trigger](https://htmx.org/headers/hx-trigger/))
 
 ## Current state
 
@@ -53,6 +53,7 @@ As a dev, you should be able to do/have:
    - [ ] Fallback for service loading
  - [x] Implement the 3rd service 
  - [ ] Communication between widgets?
+ - [ ] Describe infra and deploy a demo to AWS
 
 ## Getting started
 
