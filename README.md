@@ -1,8 +1,8 @@
 # distributex
 
-## 🚧 WIP 🚧 - This is very much a work-in-progress project
+## 🚧 WIP 🚧 - This is very much a work-in-progress project (80% done)
 
-This is a POC of a federated application combining the Xs of NGINX and HTMX
+This is a POC of a federated architecture combining the Xs of NGINX and HTMX
 
 ## Architecture
 
@@ -11,14 +11,15 @@ This is a POC of a federated application combining the Xs of NGINX and HTMX
 ## Tech stack
 
  - Main app: HTMX, NGINX, and Tailwind
- - Docker 
  - Service 1 (Todo list) - Golang & Sqlite
  - Service 2 (Chat) - Rust & Websockets
  - Service 3 (Tech News) - Python & Hackernews API
-
+ - Docker 
+ 
 ## Why?
 
-Why not? Plus I wanted to understand how much I can stretch the idea.
+I wanted to understand how much I could stretch the idea and how hard would be to have micro frontends and services using 
+HTMX. Spoiler alert, it's surprisingly easy, and almost no js involved.
 
 ## Main goals
 
@@ -26,7 +27,7 @@ As a dev, you should be able to do/have:
 
  - A DX & UX isolation, which means accessing the service URL gives you the same UX as in the main APP.
  - Freedom of choice, it shouldn't matter the stack you pick for the services as long you respect the protocol
- - Communication via events
+ - Communication via events not only on the backend but also on the frontend side, thanks to a HTTP header convention ([HX-trigger](https://htmx.org/headers/hx-trigger/))
 
 ## Current state
 
@@ -72,9 +73,9 @@ make start
 That's it, you should be able to access the main application at http://localhost:4040
 
 You also should be able to access the microservices at:
-  - Todo list manager - http://localhost:4001/todo
-  - Chat service - http://localhost:4002/chat
-  - Tech News reader - http://localhost:4003/news
+  - Todo list manager - http://localhost:4001/
+  - Chat service - http://localhost:4002/
+  - Tech News reader - http://localhost:4003/
 
 ### Live reload mode
 
