@@ -1,8 +1,10 @@
 # distributex
 
-## 🚧 WIP 🚧 - This is very much a work-in-progress project (70% done)
+> adjective
+>
+> Spread from a central location to multiple points or recipients. Opposite of concentrated
 
-This is a POC of a federated architecture combining the Xs of NGINX and HTMX
+This is a POC of a federated application combining the Xs of NGINX and HTMX
 
 ## Architecture
 
