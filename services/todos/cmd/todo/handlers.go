@@ -37,6 +37,7 @@ func IndexHandler(todosTable *TodoRepository) http.HandlerFunc {
 
 func PostTodo(todosTable *TodoRepository) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+
 		log.Println("POST /todos -- Request received for " + r.URL.Path)
 
 		r.ParseForm()
@@ -74,6 +75,8 @@ func PostTodo(todosTable *TodoRepository) http.HandlerFunc {
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 			return
 		}
+
+		w.Header().Set("HX-Trigger", "todo-added")
 
 		tmpl.Execute(w, newTodo)
 	}
