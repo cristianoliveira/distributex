@@ -54,7 +54,10 @@ As a dev, you should be able to do/have:
    - [x] News service
    - [ ] Fallback for service loading
  - [x] Implement the 3rd service 
- - [ ] Communication between widgets?
+ - [x] Cross services communication via events
+   - Events emmited by one app is able to trigger another app to do something
+     Eg: When a user adds a new todo the chat app sends a message to the room.
+     See [HX-trigger](https://htmx.org/headers/hx-trigger/)
  - [ ] Describe infra and deploy a demo to AWS
 
 ## Getting started
