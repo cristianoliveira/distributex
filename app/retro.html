@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+
+  <title>Distributex - 90s style</title>
+
+  <style type="text/css" media="screen">
+    /* reset all css */
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+    
+    html {
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-image: url("/images/skeleton-dance.gif");
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      font-family: "Comic Sans", cursive;
+
+      font-size: 20px;
+
+      font-weight: 600;
+      line-height: 1.5;
+
+      background-color: lawngreen;
+      color: #000;
+
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0.67em 0;
+    }
+
+    button {
+      background: linear-gradient( 90deg, #6f00ff, #8e00fc, #a700f8, #bc00f4, #cf00f1, #e100ed, #f000e9, #ff00e6 );
+      border: 6px solid teal;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-style: outset;
+      animation: hue-rotate 4s linear infinite;
+      padding: 0.5rem 1rem;
+    }
+
+    input {
+      border: 2px solid #000;
+    }
+
+    a,
+    a:hover,
+    a:hover::before,
+    a:hover::after,
+    a::before,
+    a::after {
+      align-items: center;
+      text-decoration: none;
+    }
+
+    img {
+      vertical-align: middle;
+      border-style: none;
+      margin: 0;
+      display: inline;
+      max-width: 140px;
+    }
+
+    #chat {
+      float: right;
+      background-color: yellow;
+    }
+
+    #tech-news .app h1 {
+      font-size: 1.2em;
+    }
+
+    #counter {
+      margin: 20px auto;
+    }
+
+    #counter img {
+      margin: 20px auto;
+      height: 60px;
+    }
+  </style>
+</head>
+
+<body class="h-screen bg-gray-900 text-white">
+  <div class="hw-2/3 mx-auto">
+    <h1 class="uppercase text-blue-400 font-bold" hx-target="find">Distributex Old school - HTMX & NGINX ❤️</h1>
+    <p>
+      This is a POC of micro frontend architecture using HTMX and TailwindCSS and multiple backends.
+    </p>
+  </div>
+
+  <div class="gif">
+    <img src="/images/dancingbaby.gif" alt="">
+    <img src="/images/dancingbaby.gif" alt="">
+    <img src="/images/dancingbaby.gif" alt="">
+    <img src="/images/dancingbaby.gif" alt="">
+    <img src="/images/dancingbaby.gif" alt="">
+    <img src="/images/dancingbaby.gif" alt="">
+  </div>
+
+  <div id="todo-list" class="w-1/2 m-4 overflow-y-scroll">
+    <h1 class="text-grey-400 text-center font-bold">Todo List</h1>
+    <div class="app" hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
+  </div>
+
+  <div id="chat" class="w-1/2 m-4 overflow-y-scroll">
+    <h1 class="text-grey-400 text-cented font-bold">Chat</h1>
+    <div class="app" hx-get="/chat" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
+  </div>
+
+  <div class="gif">
+    <img src="/images/pc.webp" alt="">
+    <img src="/images/pc.webp" alt="">
+    <img src="/images/pc.webp" alt="">
+    <img src="/images/pc.webp" alt="">
+    <img src="/images/pc.webp" alt="">
+    <img src="/images/pc.webp" alt="">
+  </div>
+
+  <div id="tech-news" class="h-1/2 w-full mx-auto p-4 border-1">
+    <h1 class="text-grey-400 text-center font-bold">Tech news</h1>
+    <div class="app" hx-get="/news" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
+  </div>
+
+  <div id="counter">
+    <span>
+      00034 page clicks since 22/04/1997
+    </span>
+    <div>
+      <img width="300" src="/images/counter.gif" alt="">
+    </div>
+  </div>
+
+  <div class="w-1/2 mx-auto p-4 border-1 text-center">
+    <h1 class="text-grey-400 font-bold">See other UXs</h1>
+    <ol>
+      <li>
+        <a href="http://localhost:4001" target="_blank">Todos app UX</a>
+      </li>
+      <li>
+        <a href="http://localhost:4002" target="_blank">Chat app UX</a>
+      </li>
+      <li>
+        <a href="http://localhost:4003" target="_blank">News app UX</a>
+      </li>
+    </ol>
+  </div>
+</body>
+
+</html>
