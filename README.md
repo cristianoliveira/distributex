@@ -1,6 +1,6 @@
 # distributex
 
-This is a POC of a federated application combining the Xs of NGINX and HTMX (AKA micro-frontends)
+This is a POC of a federated architecture combining the Xs of NGINX and HTMX (AKA micro-frontends/microservice same thing)
 
 ## Architecture
 
@@ -32,6 +32,7 @@ As a dev, you should be able to do/have:
  - [x] Main app
    - [x] Serve index.html 
    - [x] Proxy requests to services
+   - [ ] Different theme (multiple clients?)
  - [x] Todo service
    - [x] Add item
    - [x] Remove item
