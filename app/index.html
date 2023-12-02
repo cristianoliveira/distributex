@@ -14,21 +14,21 @@
 </head>
 
 <body class="h-screen bg-gray-900 text-white">
-  <div class="w-2/3 mx-auto">
+  <div class="w-2/3 mx-auto text-center mt-14">
     <h1 class="uppercase text-blue-400 font-bold" hx-target="find">Distributex - HTMX & NGINX ❤️</h1>
     <p>
       This is a POC of micro frontend architecture using HTMX and TailwindCSS and multiple backends.
     </p>
   </div>
 
-  <div class="w-full h-1/2 m-4 flex justify-center border-gray-400 border-2">
-    <div class="w-1/2 m-4 overflow-y-scroll">
+  <div class="w-full h-1/2 m-2 flex mt-10">
+    <div class="w-1/2 mx-auto px-6 overflow-y-scroll">
       <h1 class="text-grey-400 text-center font-bold">Todo List</h1>
       <div hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
     </div>
 
-    <div class="w-1/2 m-4 overflow-y-scroll">
-      <h1 class="text-grey-400 text-cented font-bold">Chat</h1>
+    <div class="w-1/2 mx-auto px-6 overflow-y-scroll">
+      <h1 class="text-grey-400 pb-4 font-bold">Chat</h1>
       <div hx-get="/chat" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
     </div>
   </div>
