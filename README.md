@@ -1,6 +1,8 @@
 # distributex
 
-This is a POC of a federated architecture combining the Xs of NGINX and HTMX (AKA micro-frontends/microservice same thing)
+This is a POC of a federated architecture combining the Xs of NGINX and HTMX 
+
+(AKA microfrontends/microservices same thing)
 
 ## Architecture
 
