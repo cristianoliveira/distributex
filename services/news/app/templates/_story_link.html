@@ -1,5 +1,4 @@
-<li class="flex flex-row p-2" hx-get="/news/story/{{ details.id }}/link" hx-target="this" hx-swap="outerHTML"
-  hx-trigger="unfavorited-event-{{ details.id }} from:body">
+<li class="flex flex-row flex-wrap p-2" hx-get="/news/story/{{ details.id }}/link" hx-target="this" hx-swap="outerHTML" hx-trigger="unfavorited-event-{{ details.id }} from:body">
   <div class="w-4/6">
     <a href="{{ details.url }}">{{ details.title }} by {{details.by}}</a>
   </div>
@@ -7,7 +6,7 @@
   <div class="w-2/6">
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
       hx-get="/news/story/{{ details.id }}/details" hx-target="next #show-details" hx-swap="innerHTML"
-      hx-trigger="click" hx-indicator="next #loading">
+      hx-trigger="click">
       Preview
     </button>
 
@@ -21,5 +20,5 @@
     </button>
   </div>
 
-  <div id="show-details"></div>
+  <div id="show-details" class="w-full"></div>
 </li>
