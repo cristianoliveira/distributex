@@ -16,6 +16,10 @@ pub async fn join(Form(params): Form<ChatUser>) -> impl IntoResponse {
     Html(templates::chat(params))
 }
 
+pub async fn chat_app() -> impl IntoResponse {
+    Html(templates::chat_app())
+}
+
 pub async fn index_page() -> impl IntoResponse {
     Html(templates::index_page())
 }

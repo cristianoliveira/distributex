@@ -8,11 +8,17 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func IndexHandler(todosTable *TodoRepository) http.HandlerFunc {
+func IndexHandler() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "web/index.html")
+	}
+}
+
+func TodoAppHandler(todosTable *TodoRepository) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		log.Println("GET /todos -- Request received for " + r.URL.Path)
 
-		tmpl, err := template.ParseFiles("web/index.html", "web/_todo.html")
+		tmpl, err := template.ParseFiles("web/todo.html", "web/_todo.html")
 		if err != nil {
 			log.Println("Error parsing template reason " + err.Error())
 			w.WriteHeader(http.StatusInternalServerError)

@@ -9,9 +9,24 @@
   <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <style type="text/css">
+    * {
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+      color: red;
+    }
+
+    body {
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body class="bg-black text-white">
+  <div class="h-100 w-full flex border items-center justify-center font-sans">
+    <h1>Chat app UX</h1>
+    <p>This is the UX from the chat app when accessed directly</p>
+  </div>
+
   <div class="h-100 w-full flex items-center justify-center font-sans">
     <div class="rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
       {{> join_form }}

@@ -12,31 +12,36 @@
       background-color: #000000;
       color: #ffffff;
     }
+
+    #todo-form > input {
+      border: 1px red solid; 
+    }
+
+    #todo-form > button {
+      background-color: red;
+    }
+
+    #todo-list #todo-add-btn {
+      background-color: green;
+    }
+
+    #todo-list #todo-remove-btn {
+      background-color: red;
+    }
   </style>
 </head>
 
 <body>
-  <div class="h-100 w-full flex items-center justify-center font-sans">
-    <div class="rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-      <div class="mb-4">
-        <div class="flex mt-4">
-          <form id="todo-form">
+  <div class="w m-4 overflow-y-scroll">
+    <div class="text-grey-400 text-center font-bold">
+      <h1>This is the todo UX</h1>
+      <p>
+      This UX differ from the <a href="http://localhost:4040" target="_blank">Main app</a>
+      </p>
 
-            <input name="details" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-black"
-              placeholder="Add Todo">
-
-            <button class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal"
-              hx-post="/todos" hx-include="#todo-form" hx-target="#todo-list" hx-swap="beforeend">Add</button>
-          </form>
-        </div>
-      </div>
-
-      <div id="todo-list">
-        {{range .}}
-        {{ template "todo-item" . }}
-        {{end}}
-      </div>
+      <h1>Todo List</h1>
     </div>
+    <div hx-get="/todos" hx-trigger="load" hx-target="this" hx-swap="innerHTML"></div>
   </div>
 </body>
 

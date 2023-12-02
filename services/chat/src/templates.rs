@@ -15,6 +15,15 @@ pub fn index_page() -> String {
     reg.render("index", &json!({})).unwrap()
 }
 
+pub fn chat_app() -> String {
+    let mut reg = Handlebars::new();
+
+    reg.register_template_string("join_form", include_str!("templates/_join_form.html"))
+        .unwrap();
+
+    reg.render("join_form", &json!({})).unwrap()
+}
+
 pub fn chat(user: ChatUser) -> String {
     let mut reg = Handlebars::new();
 
