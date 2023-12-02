@@ -25,9 +25,16 @@ func main() {
 	http.ListenAndServe("0.0.0.0:"+port, RuterWithContext(todosRepo))
 }
 
+func RedirectTo(url string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, url, http.StatusSeeOther)
+	}
+}
+
 func RuterWithContext(repo *TodoRepository) http.Handler {
 	router := mux.NewRouter().StrictSlash(true)
 
+	router.HandleFunc("/", RedirectTo("/todos")).Methods("GET")
 	router.HandleFunc("/todos", IndexHandler(repo)).Methods("GET")
 	router.HandleFunc("/todos", PostTodo(repo)).Methods("POST")
 	router.HandleFunc("/todos/{todoId}", PutTodo(repo)).Methods("PUT")

@@ -4,7 +4,7 @@ mod ws_handlers;
 
 use axum::{
     routing::{get, post},
-    Router,
+    Router, response::Redirect,
 };
 use std::{
     collections::HashSet,
@@ -30,6 +30,7 @@ async fn main() {
     let app_state = Arc::new(AppState { user_set, tx });
 
     let app = Router::new()
+        .route("/", get(|| async { Redirect::permanent("/chat") }))
         .route("/chat", get(crate::http_handlers::index_page))
         .route("/chat/join", get(crate::http_handlers::join))
         .route("/chat/ws", get(crate::ws_handlers::chat))
