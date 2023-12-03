@@ -34,7 +34,9 @@ As a dev, you should be able to do/have:
  - [x] Main app
    - [x] Serve index.html 
    - [x] Proxy requests to services
-   - [ ] Different theme (multiple clients?)
+   - [x] Different clients/themes
+      - http://localhost:4040/index.html
+      - http://localhost:4040/retro.html   
  - [x] Todo service
    - [x] Add item
    - [x] Remove item
@@ -52,6 +54,7 @@ As a dev, you should be able to do/have:
    - [x] Chat service
    - [x] News service
    - [ ] Fallback for service loading
+   - [ ] Handle errors
  - [x] Implement the 3rd service 
  - [x] Cross services communication via events
    - Events emmited by one app is able to trigger another app to do something
