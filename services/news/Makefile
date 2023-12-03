@@ -7,3 +7,10 @@ run:
 run-dev:
 	@echo "Running news app"
 	@python -m app
+
+.Phony: setup
+setup:
+	@echo "Setting up news app"
+	@pip install -r requirements.txt
+	# Check if sqlite3 is installed
+	@sqlite3 --version || echo "ERROR: Please install sqlite3!"
