@@ -3,12 +3,14 @@ FROM python:3.11-alpine
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY requirements.txt /app
-RUN make setup
-
+RUN apk add make
 RUN apk add sqlite
 
+COPY requirements.txt /app
+
 ADD . /app
+
+RUN make setup
 
 EXPOSE 4003
 
