@@ -1,14 +1,14 @@
 .Phony: run
 run:
-	@echo "Running service one"
+	@echo "Running todo app"
 	@go run cmd/todo/*.go
 
 .Phony: build
 build:
-	@echo "Running service one"
+	@echo "Running todo app"
 	@go run cmd/todo/main.go -o bin/todo-service
 
 .Phony: watch
 watch:
-	@echo "Running service one"
+	@echo "Running todo app"
 	@npx nodemon --exec 'make run' --signal SIGTERM
