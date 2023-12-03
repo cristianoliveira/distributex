@@ -12,7 +12,6 @@ pub struct ChatUser {
 }
 
 pub async fn join(Form(params): Form<ChatUser>) -> impl IntoResponse {
-    println!("Joining chat: {:?}", params);
     Html(templates::chat(params))
 }
 

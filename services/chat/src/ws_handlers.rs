@@ -1,3 +1,4 @@
+use log::{info, error};
 use crate::{http_handlers::ChatUser, templates};
 use axum::{
     extract::{
@@ -29,28 +30,28 @@ pub async fn chat(
 async fn websocket(stream: WebSocket, user: ChatUser, state: Arc<AppState>) {
     let (mut sender, mut receiver) = stream.split();
 
-    println!("ChatUser: {:?}", user);
+    info!("ChatUser: {:?}", user);
 
     // First message waiting for the user to join
     let mut username = String::new();
     while let Some(Ok(message)) = receiver.next().await {
         if let Message::Text(raw_text) = message {
-            println!("Received message: {:?}", raw_text);
+            info!("Received message: {:?}", raw_text);
 
             let data = match serde_json::from_str::<Event>(&raw_text) {
                 Ok(event) => event,
                 Err(err) => {
-                    println!("Invalid JSON: {:?}", err);
+                    error!("Invalid JSON: {:?}", err);
                     continue;
                 }
             };
 
             if data.username.is_none() {
-                println!("Invalid username: {:?}", raw_text);
+                error!("Invalid username: {:?}", raw_text);
                 continue;
             }
 
-            println!("Username: {:?}", data);
+            info!("Username: {:?}", data);
             let name = data.username.unwrap();
             check_username(&state, &mut username, &name);
 
@@ -75,7 +76,7 @@ async fn websocket(stream: WebSocket, user: ChatUser, state: Arc<AppState>) {
 
     let mut send_task = tokio::spawn(async move {
         while let Ok(msg) = rx.recv().await {
-            println!("Sending message: {:?}", msg);
+            info!("Sending message: {:?}", msg);
             if sender.send(Message::Text(msg)).await.is_err() {
                 break;
             }
@@ -88,13 +89,13 @@ async fn websocket(stream: WebSocket, user: ChatUser, state: Arc<AppState>) {
             let data = match serde_json::from_str::<Event>(&raw_text) {
                 Ok(event) => event,
                 Err(err) => {
-                    println!("Invalid JSON: {:?}", err);
+                    error!("Invalid JSON: {:?}", err);
                     continue;
                 }
             };
 
             if data.username.is_none() {
-                println!("Invalid username: {:?}", raw_text);
+                info!("Invalid username: {:?}", raw_text);
                 continue;
             }
 
@@ -103,8 +104,7 @@ async fn websocket(stream: WebSocket, user: ChatUser, state: Arc<AppState>) {
                 message: data.message,
             });
 
-            let res = tx.send(response_html);
-            println!("Res after send msg: {:?}", res);
+            let _ = tx.send(response_html);
         }
     });
 

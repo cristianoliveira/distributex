@@ -2,6 +2,8 @@ mod http_handlers;
 mod templates;
 mod ws_handlers;
 
+use log::info;
+
 use axum::{
     routing::get,
     Router
@@ -22,7 +24,7 @@ pub struct AppState {
 
 #[tokio::main]
 async fn main() {
-    println!("Starting chat server...");
+    info!("Starting chat server...");
     let port = std::env::var("PORT").unwrap_or_else(|_| "4002".to_string());
     let user_set = Mutex::new(HashSet::new());
     let (tx, _rx) = broadcast::channel(100);
@@ -37,7 +39,7 @@ async fn main() {
         .with_state(app_state);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port.parse::<u16>().unwrap()));
-    println!("Listening {}.", addr);
+    info!("Listening {}.", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
