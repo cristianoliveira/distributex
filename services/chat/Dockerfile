@@ -14,7 +14,6 @@ RUN sed -i 's#src/main.rs#mock.rs#' Cargo.toml
 
 ENV CARGO_TARGET_DIR=/var/dist
 RUN cargo build --release
-RUN cargo install cargo-watch
 
 RUN sed -i 's#mock.rs#src/main.rs#' Cargo.toml
 # After this section no cache
