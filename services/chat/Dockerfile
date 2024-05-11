@@ -20,4 +20,4 @@ RUN sed -i 's#mock.rs#src/main.rs#' Cargo.toml
 
 COPY src ./src
 
-CMD ["cargo", "watch", "-x", "run"]
+CMD ["cargo", "run"]
