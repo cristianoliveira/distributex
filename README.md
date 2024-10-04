@@ -74,6 +74,13 @@ If you are on OSX we recommend installing [colima](https://github.com/abiosoft/c
 
 ### Running
 
+Check the available commands with:
+```bash
+make help
+```
+
+To start all the application run:
+
 ```bash
 make start
 ```
