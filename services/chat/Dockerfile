@@ -1,4 +1,4 @@
-FROM rust:1.67-alpine
+FROM rust:1.71-alpine
 
 RUN apk add alpine-sdk
 
