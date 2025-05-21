@@ -119,12 +119,12 @@
   </div>
 
   <div class="gif">
-    <img src="/images/dancingbaby.gif" alt="">
-    <img src="/images/dancingbaby.gif" alt="">
-    <img src="/images/dancingbaby.gif" alt="">
-    <img src="/images/dancingbaby.gif" alt="">
-    <img src="/images/dancingbaby.gif" alt="">
-    <img src="/images/dancingbaby.gif" alt="">
+    <img src="/images/dancingbaby.gif" >
+    <img src="/images/dancingbaby.gif" >
+    <img src="/images/dancingbaby.gif" >
+    <img src="/images/dancingbaby.gif" >
+    <img src="/images/dancingbaby.gif" >
+    <img src="/images/dancingbaby.gif" >
   </div>
 
   <div id="tech-news" class="h-1/2 w-full mx-auto p-4 border-1">
